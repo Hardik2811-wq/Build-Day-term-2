@@ -1,0 +1,324 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --primary-light: #3b82f6;
+    --bg: #f5f6fa;
+    --card: #ffffff;
+    --text: #1f2937;
+    --text-light: #6b7280;
+    --border: #d1d5db;
+    --success: #10b981;
+    --danger: #dc2626;
+    --danger-dark: #b91c1c;
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg) 0%, #e5e9f0 100%);
+    font-family: "Segoe UI", "Roboto", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--text);
+}
+
+.app {
+    width: 100%;
+    max-width: 520px;
+    background: var(--card);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ============= Header ============= */
+h1 {
+    margin: 0 0 30px 0;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============= Input Section ============= */
+.input-section {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+input {
+    flex: 1;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #f9fafb;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+input::placeholder {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* ============= Buttons ============= */
+button {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: var(--primary);
+    color: white;
+}
+
+button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button.danger {
+    background: var(--danger);
+}
+
+button.danger:hover {
+    background: var(--danger-dark);
+    box-shadow: 0 6px 16px rgba(220, 38, 38, 0.3);
+}
+
+/* ============= Filters ============= */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-btns {
+    display: flex;
+    gap: 8px;
+}
+
+.filter-btns button {
+    background: transparent;
+    color: var(--text-light);
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.filter-btns button:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    box-shadow: none;
+    transform: none;
+}
+
+.filter-btns button.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* ============= Task List ============= */
+ul {
+    list-style: none;
+    max-height: 600px;
+    overflow-y: auto;
+    padding: 0;
+}
+
+ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+ul::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+ul::-webkit-scrollbar-thumb {
+    background: var(--text-light);
+    border-radius: 10px;
+}
+
+ul::-webkit-scrollbar-thumb:hover {
+    background: var(--text);
+}
+
+/* ============= Task Items ============= */
+li {
+    background: #f9fafb;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    opacity: 0;
+    animation: slideIn 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+li:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+    transform: translateY(-2px);
+}
+
+li.completed {
+    background: #dcfce7;
+    border-color: var(--success);
+}
+
+li.completed .task-text {
+    text-decoration: line-through;
+    color: #4b5563;
+}
+
+li.completed .timestamp {
+    color: #6b7280;
+}
+
+.task-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.task-text {
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--text);
+    word-break: break-word;
+}
+
+.timestamp {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+/* ============= Controls ============= */
+.controls {
+    display: flex;
+    gap: 6px;
+    margin-left: 12px;
+}
+
+.ctrl-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--text-light);
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ctrl-btn:hover {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary);
+    transform: scale(1.1);
+    box-shadow: none;
+}
+
+.ctrl-btn:active {
+    transform: scale(0.95);
+}
+
+/* ============= Empty State ============= */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-light);
+}
+
+/* ============= Responsive ============= */
+@media (max-width: 480px) {
+    .app {
+        padding: 24px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .input-section {
+        flex-direction: column;
+    }
+
+    .input-section button {
+        width: 100%;
+    }
+
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-btns {
+        width: 100%;
+    }
+
+    .filter-btns button {
+        flex: 1;
+    }
+
+    li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .controls {
+        width: 100%;
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+}
